@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+    <title>Binary Image Classifier</title>
+</head>
+
+<body>
+    <h3 style="text-align: center;">Real time Binary Classifier</h3>
+    <p style="text-align: center; font-size: xx-small;">(click pictures of 2 different classes then press train and wait
+        for few
+        moments) <strong>(please allow webcam access)</strong></p>
+    <h4 id="result" style="display: none;"></h4>
+
+    <h4 id="ontrain"></h4>
+    <div class="mbox">
+        <div class=" d-flex flex-column card animate__animated animate__bounceInUp" style="text-align: center;">
+
+            <video autoplay="true" id="videoElement" width="224px" height="224px" class="p-2">
+            </video>
+            <div class="d-flex">
+                <button id="0" onclick="handleButton(this)" class="btn btn-primary  p-2">Class 1</button>
+                <button id="1" onclick="handleButton(this)" class="btn btn-primary p-2 ">Class 2</button>
+                <button onclick="train()" class="btn btn-primary p-2 train">train</button>
+                <button onclick="prediction()" class="btn btn-warning p-2 animate__animated animate__heartBeat"
+                    style="display: none;" id='predictButton'>start</button>
+            </div>
+            <div class="d-flex flex-row">
+                <h6 class="p-2">Class 1 items:(30-50)
+                </h6>
+                <p id="c1" class="p-2"></p>
+            </div>
+            <div class="d-flex">
+                <h6 class="p-2">Class 2 items:(30-50) <p id="c2" class="p-2"></p>
+                </h6>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div id="bars" style="display: none; padding-top: 3rem;">
+        <div class="progress">
+            <div class="progress-bar progress-bar-danger" id="c1bar" role="progressbar" style="width: 0%;"
+                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">class 1</div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-warning" role="progressbar" id="c2bar" style="width: 0%"
+                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"> class 2</div>
+        </div>
+    </div>
+
+
+    <p style="font-size: xx-small;margin-top: 30rem;">Created by <strong>Rupam jyoti das</strong></p>
+    <style>
+        #bars {}
+
+        .mbox {
+            position: relative;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card {
+            border-radius: 0px;
+            background: linear-gradient(145deg, #d5d9da, #feffff);
+            box-shadow: 20px 20px 60px #d1d4d5,
+                -20px -20px 60px #ffffff;
+            padding-top: 3rem;
+            /* width: fit-content; */
+            width: 50%;
+
+        }
+
+        .btn {
+            /* border-radius: 22px; */
+            /* background: #c3ffff;
+            box-shadow: inset 10px 10px 20px #a6d9d9,
+                inset -10px -10px 20px #e0ffff;
+            color: dodgerblue */
+        }
+
+        .train {}
+
+        body {
+            background: #edf1f2;
+        }
+
+        .progress {
+            width: 30%;
+            position: relative;
+            left: 35%;
+            border-radius: 28px;
+        }
+
+        p,
+        h6,
+        h3 {
+            /* color: ; */
+        }
+
+        #videoElement {
+            border: 2px solid whitesmoke;
+
+            margin-bottom: 2rem;
+
+        }
+    </style>
+
+
+    <script src="webcam.js"></script>
+    <script src="loadData.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
